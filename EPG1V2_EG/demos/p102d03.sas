@@ -27,9 +27,10 @@ run;
 ***********************************************************;
 
 *Complete the PROC IMPORT step;
-proc import ;
+proc import datafile="&path/storm_damage.csv"
+			dbms= csv out=work.storm_damage_import replace;
 run;
 
 *Complete the PROC CONTENTS step;
-proc contents data= ;
+proc contents data=storm_damage_import;
 run;

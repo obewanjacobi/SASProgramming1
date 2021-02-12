@@ -37,7 +37,7 @@
 ***********************************************************;
 
 *Modify the path if necessary;
-libname out "C:\Users\JNT1372\Documents\Learning SAS\SAS Programming 1\EPG1V2_EG\output";
+libname out "&path\output";
 
 data class_copy1 out.class_copy2;
 	set sashelp.class;

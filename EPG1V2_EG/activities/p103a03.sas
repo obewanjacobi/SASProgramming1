@@ -8,7 +8,7 @@
 *       that step?                                        *;
 ***********************************************************;
 
-%let BasinCode=NA;
+%let BasinCode=SP;
 
 proc means data=pg1.storm_summary;
 	where Basin="&BasinCode";
@@ -19,3 +19,9 @@ proc freq data=pg1.storm_summary;
 	where Basin='&BasinCode';
 	tables Type;
 run;
+
+* The FREQ procedure did not produce a report. The difference is that in
+* this step the WHERE statement uses single quotes rather than double, which
+* will not work for Macros. Double quotation marks must be used around macro 
+* variables.
+*;

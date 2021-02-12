@@ -10,8 +10,9 @@
 *       and the results.                                  *;
 ***********************************************************;
 
-proc import ;
+proc import datafile="&path/eu_sport_trade.xlsx" replace
+			out=work.eu_sport_trade dbms=xlsx;
 run;
 
-proc contents data= ;
+proc contents data=eu_sport_trade;
 run;

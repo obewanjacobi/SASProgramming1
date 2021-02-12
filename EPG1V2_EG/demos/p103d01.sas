@@ -67,7 +67,24 @@ run;
 *       and run the selected code.                            *;
 ***************************************************************;
 
-proc print ;
+/* list first 10 rows */ 
+proc print data=pg1.storm_summary (obs=10);
+	 var Season Name Basin MaxWindMPH MinPressure StartDate EndDate;
+run;
+
+/* calculate summary statistics */
+proc means data=pg1.storm_summary;
+	 var MaxWindMPH MinPressure;
+run;
+
+/* examine extreme values (but there's a lot more here) */
+proc univariate data=pg1.storm_summary;
+	 var MaxWindMPH MinPressure;
+run;
+
+/* List unique values and frequencies */
+proc freq data=pg1.storm_summary;
+	 table Basin Type Season;
 run;
 
 

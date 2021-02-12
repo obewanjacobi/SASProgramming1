@@ -45,7 +45,7 @@ run;
 *       include NA, WP, SP, WP, NI, and SI. Highlight the *;
 *       demo program and run the selected code.           *;
 ***********************************************************;
-
+/*Original*/
 proc print data=pg1.storm_summary;
 	where MaxWindMPH>=156 and Basin="NA" and StartDate>="01JAN2000"d;
 	var Basin Name StartDate EndDate MaxWindMPH;
@@ -53,6 +53,20 @@ run;
 
 proc means data=pg1.storm_summary;
 	where MaxWindMPH>=156 and Basin="NA" and StartDate>="01JAN2000"d;
+	var MaxWindMPH MinPressure;
+run; 
+
+/*Macro Version*/
+%let WindSpeed=156;
+%let BasinCode=NA;
+%let Date=01jan2000;
+proc print data=pg1.storm_summary;
+	where MaxWindMPH>=&WindSpeed and Basin="&BasinCode" and StartDate>="&Date"d;
+	var Basin Name StartDate EndDate MaxWindMPH;
+run;
+
+proc means data=pg1.storm_summary;
+	where MaxWindMPH>=&WindSpeed and Basin="&BasinCode" and StartDate>="&Date"d;
 	var MaxWindMPH MinPressure;
 run; 
 

@@ -45,6 +45,37 @@ run;
 *       missing values?                                   *;
 ***********************************************************;
 
-proc ;
+proc print data=pg1.storm_summary;
 	*Add WHERE statement;
+	 where MaxWindMPH >= 156;
+run;
+
+proc print data=pg1.storm_summary;
+	*Add WHERE statement;
+	 where Basin = "WP";
+run;
+
+proc print data=pg1.storm_summary;
+	*Add WHERE statement;
+	 where Basin in ("SI","NI");
+run;
+
+proc print data=pg1.storm_summary;
+	*Add WHERE statement;
+	 where StartDate >= "01jan2010"d;
+run;
+
+proc print data=pg1.storm_summary;
+	*Add WHERE statement;
+	 where Type = "TS" and Hem_EW = "W";
+run;
+
+proc print data=pg1.storm_summary;
+	*Add WHERE statement;
+	 where MaxWindMPH > 156 or MinPressure < 920;
+run;
+
+proc print data=pg1.storm_summary;
+	*Add WHERE statement;
+	 where MaxWindMPH > 156 or 0 < MinPressure < 920;
 run;

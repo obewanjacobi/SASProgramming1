@@ -13,4 +13,5 @@ proc print data=pg1.storm_summary(obs=50);
 	*where Type is not missing; /*same as Type ne " "*/
 	*where MaxWindMPH between 150 and 155;
 	*where Basin like "_I";
+	*where name like "Z%";
 run;
