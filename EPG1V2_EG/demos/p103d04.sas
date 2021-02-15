@@ -37,3 +37,25 @@ run;
 ***********************************************************;
 
 *Write a PROC PRINT step and FORMAT statement;
+
+*Default report;
+proc print data=pg1.storm_damage;
+run;
+
+*Add a format statement;
+
+proc print data=pg1.storm_damage;
+	 format Date mmddyy10. Cost dollar16.;
+run;
+
+*Messing with widths;
+
+proc print data=pg1.storm_damage;
+	 format Date mmddyy8. Cost dollar14.;
+run;
+
+*And again;
+
+proc print data=pg1.storm_damage;
+	 format Date mmddyy6. Cost dollar10.;
+run;

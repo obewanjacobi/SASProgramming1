@@ -50,9 +50,23 @@ run;
 *       turn the procedure titles back on.                *;
 ***********************************************************;
 
-proc freq data=pg1.storm_final;
-	tables BasinName Season;
+proc freq data=pg1.storm_final order=freq nlevels;
+	tables BasinName Season / nocum;
 run;
 
+proc freq data=pg1.storm_final order=freq nlevels;
+	tables BasinName StartDate / nocum;
+	format StartDate monname.;
+run;
 
-
+ods graphics on;
+ods noproctitle;
+title "Frequency Report for Basin and Storm Month";
+proc freq data=pg1.storm_final order=freq nlevels;
+	tables BasinName StartDate / nocum 
+		plots=freqplot(orient=horizontal scale = percent);
+	format StartDate monname.;
+	label BasinName = "Basin";
+run;
+title;
+ods proctitle;

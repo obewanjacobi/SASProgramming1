@@ -74,6 +74,19 @@ run;
 *       program and run the selected code.                *;
 ***********************************************************;
 
-proc print data=pg1.storm_final;
-	var Season Name MaxWindMPH MinPressure StartDate StormLength;
+proc sort data=pg1.storm_final out=storm_sort;
+	by BasinName descending MaxWindMPH;
+	where MaxWindMPH > 156;
 run;
+
+title "Category 5 Storm";
+proc print data=storm_sort label noobs; *phahahahahahahahahaha;
+	var Season Name MaxWindMPH MinPressure StartDate StormLength;
+	by BasinName;
+	label MaxWindMPH = "Max Wind (MPH)"
+		  MinPressure = "Min Pressure"
+		  StartDate = "Start Date"
+		  StormLength = "Length of Storm (days)";
+run;
+
+title;

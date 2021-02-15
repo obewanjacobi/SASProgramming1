@@ -37,7 +37,6 @@ title;
 *       statement to suppress the report.                 *;
 ***********************************************************;
 
-
 proc freq data=pg1.storm_final;
 	tables BasinName*StartDate;
 	format StartDate monname.;
@@ -45,6 +44,32 @@ proc freq data=pg1.storm_final;
 		  StartDate="Storm Month";
 run;
 
+proc freq data=pg1.storm_final;
+	tables BasinName*StartDate / norow nocol nopercent;
+	format StartDate monname.;
+	label BasinName="Basin"
+		  StartDate="Storm Month";
+run;
 
+proc freq data=pg1.storm_final;
+	tables BasinName*StartDate / crosslist;
+	format StartDate monname.;
+	label BasinName="Basin"
+		  StartDate="Storm Month";
+run;
+
+proc freq data=pg1.storm_final;
+	tables BasinName*StartDate / list;
+	format StartDate monname.;
+	label BasinName="Basin"
+		  StartDate="Storm Month";
+run;
+
+proc freq data=pg1.storm_final noprint;
+	tables BasinName*StartDate / out=stormcounts;
+	format StartDate monname.;
+	label BasinName="Basin"
+		  StartDate="Storm Month";
+run;
 
 

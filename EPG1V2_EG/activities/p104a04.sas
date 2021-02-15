@@ -11,4 +11,8 @@ data storm_length;
 	set pg1.storm_summary;
 	drop Hem_EW Hem_NS Lat Lon;
 	*Add assignment statement;
+	StormLength = EndDate - StartDate;
 run;
+
+/*Part 2*/
+* 6 days;

@@ -43,3 +43,28 @@ proc means data=pg1.storm_final;
 	var MaxWindMPH;
 run;
 
+proc means data=pg1.storm_final mean mediam min max maxdec=0;
+	var MaxWindMPH;
+run;
+
+proc means data=pg1.storm_final mean mediam min max maxdec=0;
+	var MaxWindMPH;
+	class BasinName;
+run;
+
+proc means data=pg1.storm_final mean mediam min max maxdec=0;
+	var MaxWindMPH;
+	class BasinName StormType;
+run;
+
+proc means data=pg1.storm_final mean mediam min max maxdec=0;
+	var MaxWindMPH;
+	class BasinName StormType;
+	ways 1;
+run;
+
+proc means data=pg1.storm_final mean mediam min max maxdec=0;
+	var MaxWindMPH;
+	class BasinName StormType;
+	ways 0 1 2;
+run;

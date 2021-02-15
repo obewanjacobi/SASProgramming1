@@ -47,4 +47,8 @@ data storm_new;
 	set pg1.storm_summary;
 	drop Type Hem_EW Hem_NS MinPressure Lat Lon;
 	*Add assignment statements;
+	Basin = upcase(Basin);
+	Name = propcase(Name);
+	Hemisphere = cats(Hem_NS,Hem_EW);
+	Ocean = substr(Basin, 2, 1);
 run;

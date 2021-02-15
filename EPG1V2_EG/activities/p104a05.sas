@@ -9,7 +9,21 @@
 *       of Wind1, Wind2, Wind3, and Wind4.                *;
 ***********************************************************;
 
+/*View raw data for reference*/
+proc print data=pg1.STORM_RANGE;
+run;
+
+/*Part 2*/
 data storm_wingavg;
 	set pg1.storm_range;
 	*Add assignment statements;
+	WindAvg = mean(Wind1, Wind2, Wind3, Wind4);
+run;
+
+/*Part 3*/
+data storm_wingavg;
+	set pg1.storm_range;
+	*Add assignment statements;
+	WindAvg = mean(Wind1, Wind2, Wind3, Wind4);
+	WindRange = range(Wind1, Wind2, Wind3, Wind4);
 run;

@@ -14,4 +14,7 @@ data pacific;
 	set pg1.storm_summary;
 	drop Type Hem_EW Hem_NS MinPressure Lat Lon;
 	*Add a WHERE statement that uses the SUBSTR function;
+	where substr(Basin, 2, 1) = "P";
 run;
+
+* There were 1958 observations;

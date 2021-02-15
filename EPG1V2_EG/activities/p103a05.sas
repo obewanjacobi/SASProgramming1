@@ -22,7 +22,28 @@ proc print data=pg1.storm_summary(obs=20);
 	format Lat Lon 4. StartDate EndDate date9.;
 run;
 
+*2;
+proc print data=pg1.storm_summary(obs=20);
+	format Lat Lon 4. StartDate EndDate date7.;
+run;
+* Now the date displays a 2 digit year.
+*;
+
+*3;
+proc print data=pg1.storm_summary(obs=20);
+	format Lat Lon 4. StartDate EndDate date11.;
+run;
+* Now the date displays a 4 digit year with dashes.
+*;
+
 proc freq data=pg1.storm_summary order=freq;
 	tables StartDate;
-	*Add a FORMAT statement;
 run;
+
+*5;
+proc freq data=pg1.storm_summary order=freq;
+	tables StartDate;
+	format startdate monname.;
+run;
+* The report now has 12 rows.
+*;

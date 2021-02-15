@@ -17,6 +17,7 @@
 *       LENGTH char-column $ length;                      *;
 ***********************************************************;
 
+/*1*/
 data storm_summary2;
 	set pg1.storm_summary;
 	*Add a LENGTH statement;
@@ -28,3 +29,34 @@ data storm_summary2;
 	else Ocean="Pacific";
 run;
 
+* Ocean is truncated because the first assignment statement assigns the 
+* character "Indian" which assigns the length to the column.
+*;
+
+/*2-3*/
+data storm_summary2;
+	set pg1.storm_summary;
+	length Ocean $ 8;
+	keep Basin Season Name MaxWindMPH Ocean;
+	Basin = upcase(Basin);
+	OceanCode=substr(Basin,2,1);
+	if OceanCode="I" then Ocean="Indian";
+	else if OceanCode="A" then Ocean="Atlantic";
+	else Ocean="Pacific";
+run;
+
+/*4*/
+data storm_summary2;
+	set pg1.storm_summary;
+	keep Basin Season Name MaxWindMPH Ocean;
+	Basin = upcase(Basin);
+	OceanCode=substr(Basin,2,1);
+	if OceanCode="I" then Ocean="Indian";
+	else if OceanCode="A" then Ocean="Atlantic";
+	else Ocean="Pacific";
+	length Ocean $ 8;
+run;
+
+* Yes the ordering does matter here. Even the logs warn us that the
+* length of the Ocean character variable has already been set.
+*;

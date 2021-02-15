@@ -36,4 +36,7 @@ data tropical_storm;
 	drop Hem_EW Hem_NS Lat Lon;
 	where Type="TS";
 	*Add assignment and FORMAT statements;
+	MaxWindKM = MaxWindMPH*1.60734;
+	format MaxWindKM 3.;
+	StormType = "Tropical Storm";
 run;

@@ -31,6 +31,7 @@ run;
 
 data myclass;
     set sashelp.class;
+	*where age >= 15;
     keep name age height;
     *drop sex weight;
 run;
