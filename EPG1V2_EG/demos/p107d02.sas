@@ -34,7 +34,8 @@ quit;
 ***********************************************************;
 
 proc sql;
-select Season, Name, Basin, MaxWindMPH
-    from pg1.storm_summary 
+select Season, Name, storm_summary.Basin, BasinName, MaxWindMPH
+    from pg1.storm_summary inner join pg1.storm_basincodes
+	on storm_summary.basin = storm_basincodes.basin
     order by Season desc, Name;
 quit;

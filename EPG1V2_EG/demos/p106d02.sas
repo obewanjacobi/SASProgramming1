@@ -45,8 +45,14 @@
 *     code. Open the Excel file to view the results.      *;
 ***********************************************************;
 
-*Add ODS statement; 
+/*list of all styles SAS can return*/
+/*I assume Humana probably has their own style they use for projects*/
+proc template;
+	list styles;
 
+*Add ODS statement; 
+ods excel file="&outpath/wind.xlsx" style=sasdocprinter
+	options(sheet_name='Wind Stats');
 title "Wind Statistics by Basin";
 ods noproctitle;
 proc means data=pg1.storm_final min mean median max maxdec=0;
@@ -54,6 +60,7 @@ proc means data=pg1.storm_final min mean median max maxdec=0;
     var MaxWindMPH;
 run;
 
+ods excel options(sheet_name='Wind Distribution');
 title "Distribution of Maximum Wind";
 proc sgplot data=pg1.storm_final;
     histogram MaxWindMPH;
@@ -62,3 +69,4 @@ run;
 title;  
 ods proctitle;
 *Add ODS statement;
+ods excel close;

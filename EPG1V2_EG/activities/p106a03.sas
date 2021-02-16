@@ -18,9 +18,15 @@
 *    LIBNAME libref CLEAR;                                *; 
 ***********************************************************;
 
-libname xl_lib ;
+libname xl_lib xlsx "&outpath/storm.xlsx";
 
-data storm_final;
+data xl_lib.storm_final;
 	set pg1.storm_final;
 	drop Lat Lon Basin OceanCode;
 run;
+
+libname xl_lib clear;
+
+* The program ran correctly. Dates appear as DD-Mon-YY, where Mon is the
+* month abbreviation.
+*;

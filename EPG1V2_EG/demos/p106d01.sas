@@ -38,7 +38,8 @@ libname myxl clear;
 *       named South_Pacific and Season_Stats.             *;
 ***********************************************************;
 
-data South_Pacific;
+libname xlout xlsx "&outpath/southpacific.xlsx";
+data xlout.South_Pacific;
 	set pg1.storm_final;
 	where Basin="SP";
 run;
@@ -48,5 +49,7 @@ proc means data=pg1.storm_final noprint maxdec=1;
 	var MaxWindKM;
 	class Season;
 	ways 1;
-	output out=Season_Stats n=Count mean=AvgMaxWindKM max=StrongestWindKM;
+	output out=xlout.Season_Stats n=Count mean=AvgMaxWindKM max=StrongestWindKM;
 run;
+
+libname xlout clear;

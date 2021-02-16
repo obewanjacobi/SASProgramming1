@@ -26,15 +26,18 @@
 *       the program and open the PDF file.                *;
 ***********************************************************;
 
-ods pdf file="&outpath/wind.pdf";
+ods pdf file="&outpath/wind.pdf" startpage=no
+	style=journal pdftoc=1;
 ods noproctitle;
 
+ods proclabel "Wind Statistics";
 title "Wind Statistics by Basin";
 proc means data=pg1.storm_final min mean median max maxdec=0;
     class BasinName;
     var MaxWindMPH;
 run;
 
+ods proclabel "Wind Distribution";
 title "Distribution of Maximum Wind";
 proc sgplot data=pg1.storm_final;
     histogram MaxWindMPH;

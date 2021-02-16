@@ -15,7 +15,7 @@
 ***********************************************************;
 
 *Add ODS statement;
-
+ods excel file="&outpath/pressure.xlsx" style=ANALYSIS;
 title "Minimum Pressure Statistics by Basin";
 ods noproctitle;
 proc means data=pg1.storm_final mean median min maxdec=0;
@@ -32,3 +32,4 @@ title;
 *Add ODS statement;
 
 ods proctitle;
+ods excel close;

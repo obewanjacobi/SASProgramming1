@@ -26,6 +26,11 @@
 *       displayed in color. Close the report.             *;
 ***********************************************************;
 
+ods rtf file="&outpath/ParkReport.rtf" style=Journal
+	startpage=NO;
+ods noproctitle;
+options nodate;
+
 title "US National Park Regional Usage Summary";
 
 proc freq data=pg1.np_final;
@@ -37,6 +42,7 @@ proc means data=pg1.np_final mean median max nonobs maxdec=0;
     var DayVisits Campers;
 run;
 
+ods rtf style=SASDOCPRINTER;
 title2 'Day Visits vs. Camping';
 proc sgplot data=pg1.np_final;
     vbar  Region / response=DayVisits;
@@ -45,5 +51,7 @@ run;
 title;
 
 
-
+ods proctitle;
+ods rtf close;
+options date;
 

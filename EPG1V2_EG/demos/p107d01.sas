@@ -42,7 +42,51 @@ quit;
 *       Highlight the step and run the selected code.     *;
 ***********************************************************;
 
+/*part 1*/
 proc sql;
 *Add SELECT statement;
-
+select*from pg1.storm_final;
 quit;
+
+/*part 2*/
+proc sql;
+*Add SELECT statement;
+select Season, Name, StartDate format=mmddyy10., MaxWindMPH 
+	from pg1.storm_final;
+quit;
+
+/*part 3*/
+proc sql;
+*Add SELECT statement;
+select Season, propcase(Name) as Name, StartDate format=mmddyy10., MaxWindMPH 
+	from pg1.storm_final;
+quit;
+
+/*part 4*/
+proc sql;
+*Add SELECT statement;
+select Season, propcase(Name) as Name, StartDate format=mmddyy10., MaxWindMPH 
+	from pg1.storm_final
+	where MaxWindMPH > 156 and Season > 2000;
+quit;
+
+/*part 5*/
+proc sql;
+*Add SELECT statement;
+select Season, propcase(Name) as Name, StartDate format=mmddyy10., MaxWindMPH 
+	from pg1.storm_final
+	where MaxWindMPH > 156 and Season > 2000
+	order by MaxWindMPH desc, Name;
+quit;
+
+/*part 6*/
+title "International Storms Since 2000";
+title2 "Category 5 (Wind > 156)";
+proc sql;
+*Add SELECT statement;
+select Season, propcase(Name) as Name, StartDate format=mmddyy10., MaxWindMPH 
+	from pg1.storm_final
+	where MaxWindMPH > 156 and Season > 2000
+	order by MaxWindMPH desc, Name;
+quit;
+title;
